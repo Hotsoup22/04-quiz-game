@@ -1,23 +1,31 @@
 //global var
-var startButton = document.querySelector('#startButton') ;
-var startGameContainer = document.querySelector('.startGameContainer');
-var score = document.querySelector('#score')
-var hidden = document.querySelector('.hidden');
+var startButton = $('#startButton') ;
+var startGameContainer = $('.startGameContainer');
+var score = $('#score')
+var hidden = $('.hidden');
+var hiddenAfterGameStart = $('.hiddenAfterGameStart')
 
 //startButton function
 
-startButton.addEventListener( 'click', function(event) {
+startButton.on( 'click', function(event) {
+    hidden.css({'display' : 'block'});
+    hiddenAfterGameStart.css({'display': 'none'});
     // event.preventDefault();
-    hideShowContainers()
     
-});
+    hidden.setAttribute("style", "display"," block");
+})
+
+
+
+
+//need a return to home function it currently blanks....debugtime
 
 //hide and show necessary containers
 
 
-function hideShowContainers(){
+// function hideShowContainers(){
  
-    hidden.setAttribute("style", "display"," block");
+ 
  
     // if (state == 'block') {
     //     document.getElementById(id).style.display = 'none';
@@ -26,7 +34,7 @@ function hideShowContainers(){
     //    
     // }
 
-};
+// };
  
 
 // DEclare a starting 'score`
