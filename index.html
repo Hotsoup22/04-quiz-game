@@ -3,45 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <tittle>QUIZ</tittle>
+    <link rel="stylesheet" href="assest/style.css" />
+    <tittle> <h1>QUIZ TIME!</h1></tittle>
   </head>
   <body>
 
     <!-- Nav bar with a link on the left and the timer on the right-->
-<nav>
-  <a href="index.html" >home</a>
-  <a href="assest/highScoreIndex.html">View highscore</a>
-</nav>
+  <nav>
+    <a href="index.html" >home</a>
+    <a href="assest/highScoreIndex.html">View highscore</a>
+  </nav>
+
+  <!--STATS-->
+  <div class ="stats hidden">
+    <section>
+    <h2>Score:<span id="score"> </span>  </h1>
+    <h2>Timer: <span id="timer"> </span></h1>
+    </section>
+  </div>
+
     <!-- Start game section -->
-<section>
-  <button id="startButton">Start Game</button>
-</section>
-        <!-- start game button #startButton -->
+  <div class= "start screen ">
+    <section>
+      <h2> IT'S QUIZ TIME! You Ready?</h1> 
+      <button id="startButton">Start Game</button>
+    </section>
+  </div>
+       
 
-    <!-- Container for the start game section-->
+    
 <!-- Question dsiplaysection-->
-<section class="questionDisplayContainer">
-  <p><span id= "questionBeingAsked"></span></p>
-</section>
+  <div class="questionsDisplayCard hidden">
+    <section class="questionDisplay">
+    <h2>Question:<span id= "questionBeingAsked"></span></h1>
+  </section>
+</div>
+
     <!-- Question section-->
-<section class= "questionContainer">
-<button class="A">A.</button>
-<button class="B">B.</button>
-<button class="C">C.</button>
-<button class="D">D.</button>
-</section>
 
-<section class="questionsContainer">
-<p>What is the color of Apples?</p>
-<section>
 
-<section class="AnswersContainer">
- <p>Red.</p>
-</section>
+  <div class="questionsContainer hidden">
+    <p>What is the color of Apples?</p>
+  </div>
+ <!-- buttons to answer questions -->
+  <section class= "questionContainer, hidden">
+    <button class="A">A<span class="questionPlaceholderA"></span></button>
+    <button class="B">B.</button>
+    <button class="C">C.</button>
+    <button class="D">D.</button>
+  </section>
+    
+<!-- Correct Answer containers-->
+  <div class="AnswersContainer hidden">
+  <p>Red.</p>
+  </div>
 
- <section>
-  <button id= "Submit"> Submit</button>
-</section>
+  <div class="hidden">
+    <section>
+      <button id= "Submit"> Submit</button>
+    </section>
+  </div>
     <!-- Sumbit Highscore section-->
 
   </body>
