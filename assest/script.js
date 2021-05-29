@@ -1,14 +1,33 @@
 //global var
 var startButton = document.querySelector('#startButton') ;
-var startGameContainer = document.querySelector('#startGameContainer');
-var
-
+var startGameContainer = document.querySelector('.startGameContainer');
+var score = document.querySelector('#score')
+var hidden = document.querySelector('.hidden');
 
 //startButton function
-function startGame(){
-    var
-}
 
+startButton.addEventListener( 'click', function(event) {
+    // event.preventDefault();
+    hideShowContainers()
+    
+});
+
+//hide and show necessary containers
+
+
+function hideShowContainers(){
+ 
+    hidden.setAttribute("style", "display"," block");
+ 
+    // if (state == 'block') {
+    //     document.getElementById(id).style.display = 'none';
+    // } else {
+    //     document.getElementById(id).style.display = 'block';
+    //    
+    // }
+
+};
+ 
 
 // DEclare a starting 'score`
 
