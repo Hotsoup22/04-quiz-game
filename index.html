@@ -1,71 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assest/style.css" />
-    <tittle> <h1>QUIZ TIME!</h1></tittle>
-  </head>
-  <body>
 
-    <!-- Nav bar with a link on the left and the timer on the right-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assest/style.css" />
+  <tittle>
+    <h1>QUIZ TIME!</h1>
+  </tittle>
+</head>
+
+<body>
+
+  <!-- Nav bar with a link on the left and the timer on the right-->
   <nav>
     <a href="index.html">home</a>
     <a href="assest/highScoreIndex.html">View highscore</a>
   </nav>
 
-  <!--STATS-->
+  <!-- STATS
   <div class ="stats hidden">
     <section>
     <h2>Score:<span id="score"> </span>  </h1>
     <h2>Timer: <span id="timer"> </span></h1>
     </section>
+  </div> -->
+
+
+  <!--quiz-->
+  <div id="quizContainer">
+
+    <!-- game menu-->
+    <div class="hiddenAfterGameStart">
+      <h2> IT'S QUIZ TIME! You Ready?</h1>
+      <button id="startGame">Start Game</button>
+    </div>
+
+      <!-- STATS-->
+    <div class ="stats hidden"> 
+      <!--Score-->
+      <div id= "score" class="hidden">Score</div>
+      <!-- TimerContainer-->
+      <div id = "timer" class = "hidden">Timer:30sec</div>
+    </div>
+
+   <!-- QuestionContainer-->
+  <div id="questionsContainer"> 
+    <ul id="answersContainer"></ul>
   </div>
 
-    <!-- Start game container -->
-  <div class= "startGameContainer hiddenAfterGameStart">
-    <section>
-      <h2> IT'S QUIZ TIME! You Ready?</h1> 
-      <button id="startButton">Start Game</button>
-    </section>
-  </div>
-       
-<!-- Question displayContainer--> 
-  <div class="questionsDisplayCard hidden">
-    <section class="questionDisplay">
-      <h2>Question:<span id= "questionBeingAsked"></span></h1>
-    </section>
-  </div>
 
-    <!-- Question container -->
-  <div class="questionsContainer hidden">
-    <p>What is the color of Apples?</p>
-  </div>
+   
 
- <!-- buttons/answer container -->
-  <section class= "questionContainer, hidden">
-    <button class="A">A<span class="questionPlaceholderA"></span></button>
-    <button class="B">B.</button>
-    <button class="C">C.</button>
-    <button class="D">D.</button>
-  </section>
-    
-<!--  Answerscontainers-->
-  <div class="AnswersContainer hidden2">
-<!--question 1 answers-->
-<p>Red.</p>
-<!-- question 2 answers-->
+    <!--submit-->
+    <div class="hidden">
+      <button id="Submit"> Submit</button>
+    </div>
 
   </div>
 
-<!-- Sumbit Highscore section-->
-  <div class="hidden">
-    <section>
-      <button id= "Submit"> Submit</button>
-    </section>
-  </div>
+
+
+
+
+
+ 
+
   <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
   <script type="text/javascript" src="assest/script.js"> </script>
-  
-  </body>
+
+</body>
+
 </html>
