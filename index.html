@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assest/style.css" />
+  <link rel="stylesheet" href="assest/style2.css" />
   <tittle>
     <h1>QUIZ TIME!</h1>
   </tittle>
@@ -18,57 +18,86 @@
     <a href="assest/highScoreIndex.html">View highscore</a>
   </nav>
 
-  <!-- STATS
-  <div class ="stats hidden">
-    <section>
-    <h2>Score:<span id="score"> </span>  </h1>
-    <h2>Timer: <span id="timer"> </span></h1>
-    </section>
-  </div> -->
+
 
 
   <!--quiz-->
+  <div class="card results">
+    <div class = "win-loss-container">
+    <div>
+    <h2>Correct: <span class="win">0 </span> </h2>
+    <h2>Incorrect: <span class="lose">0</span></h2>
+  </div>
   <div id="quizContainer">
-
-    <!-- game menu-->
-    <div class="hiddenAfterGameStart">
-      <h2> IT'S QUIZ TIME! You Ready?</h1>
-      <button id="startGame">Start Game</button>
-    </div>
-
-      <!-- STATS-->
-    <div class ="stats hidden"> 
+     <!-- STATS-->
+     <div class ="stats hidden"> 
       <!--Score-->
       <div id= "score" class="hidden">Score</div>
       <!-- TimerContainer-->
-      <div id = "timer" class = "hidden">Timer:30sec</div>
+      <div class= "card timer">
+        <div class = "timer-text">
+        <div class="large-font timer-count">10</div>
+        <h3>seconds remaining</h3>
+      </div>
+
+    <!-- game menu-->
+    <div class="startMenu">
+      
+      <h2 id='startTitle'> QUIZ TIME! You Ready?</h2>
+        <button class="start-button">Start</button>
+        <input type="text" class="form-control mb-2" id="initials" placeholder="Enter your initials">
+        <a class="btn btn-dark btn-lg initials" href="assest/highScoreIndex.html" role="button" id="buttonInitials">Submit</a>
     </div>
 
+     
    <!-- QuestionContainer-->
-  <div id="questionsContainer"> 
-    <ul id="answersContainer"></ul>
-  </div>
+<div id="questionsContainer">
+  <h3 id="questionsTitle"> Questions:</h3>
 
+</div>
+  <!--answers Container-->
+  <div id="answersContainer">
+    <ul id="answers">Select From Multiple Choice Answers.
+     <li> <button type="button" class='answersBtn' id="btn1">Click Me!</button> </li>
+     <li> <button type="button" class='answersBtn' id="btn2">Click Me!</button> </li>
+     <li> <button type="button" class='answersBtn' id="btn3">Click Me!</button> </li>
+     <li> <button type="button" class='answersBtn' id="btn4">Click Me!</button> </li>
+    </ul>
+  </div>
 
    
 
     <!--submit-->
     <div class="hidden">
       <button id="Submit"> Submit</button>
+      <button class="reset-button">Reset Score</button>
     </div>
-
   </div>
 
 
 
-
+<div id='gameOver'>
+  <h3>gameOver</h3>
+</div>
 
 
  
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
-  <script type="text/javascript" src="assest/script.js"> </script>
+  <script type="text/javascript" src="assest/script2.js"> </script>
 
 </body>
 
 </html>
+<!-- GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+WHEN I answer a question
+THEN I am presented with another question
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+WHEN the game is over
+THEN I can save my initials and my score
+``` -->
