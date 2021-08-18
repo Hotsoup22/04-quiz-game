@@ -19,14 +19,15 @@ startButton.addEventListener("click", startGame);
 var answersContainerDiv = $("#answersContainer");
 
 function init() {
-  $("#inlineFormInput").css({ display: "none" });
-  $(".initials").css({ display: "none" });
+
   getWins();
   getlosses();
 }
 
 // The startGame function is called when the start button is clicked
 function startGame() {
+  $("#initials").css({ display: "none" });
+  $("#buttonInitials").css({ display: "none" });
   // startTitle.css(display,"none");
   isWin = false;
   timerCount = 20;
