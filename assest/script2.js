@@ -12,7 +12,7 @@ var btn2 = document.getElementById("btn2");
 var btn3 = document.getElementById("btn3");
 var btn4 = document.getElementById("btn4");
 var answersBtn = document.querySelectorAll(".answersBtn");
-let currentQuestion = 0;
+let currentQuestionIndex = 0;
 
 startButton.addEventListener("click", startGame);
 
@@ -37,27 +37,25 @@ function startGame() {
   renderQuestions();
   startTimer();
 }
-
+// Updates the timer value to immediate value
+function updateTimerValue() {
+	timerElement.textContent = timerCount;
+}
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
   // Sets timer
-  timer = setInterval(function () {
-    timerCount--;
-    timerElement.textContent = timerCount;
-    if (timerCount >= 0) {
-
-      // Tests if win condition is met
-      if (isWin && timerCount > 0) {
-        // Clears interval and stops timer
-        clearInterval(timer);
-        winGame();
-      }
-    }
+  timerInterval = setInterval(function () {
+    timerCount-= 1;
+    updateTimerValue();
+    if( timerCount <= 0 || currentQuestionIndex === questions.length ) {
+			winGame();
+    
     // Tests if time has run out
     if (timerCount === 0) {
       // Clears interval
-      clearInterval(timer);
+      clearInterval(timerInterval);
       gameOver();
+    }
     }
   }, 1000);
 }
@@ -88,7 +86,7 @@ function gameOver() {
   $(".initials").css({ display: "block" });
   //  startTitle.innerHTML = "GAME OVER";
   // startTitle.textContent = ("GAME OVER");
-     currentQuestion = 0
+  currentQuestionIndex = 0
   startButton.disabled = false;
   setLosses();
 }
@@ -163,21 +161,21 @@ var questions = [
 
 
 function renderQuestions() {
-  questionsTitle.textContent = questions[currentQuestion].question;
+  questionsTitle.textContent = questions[currentQuestionIndex].question;
   // for (i = 0; i < questions[currentQuestion].answers.length; i++) {
-  btn1.textContent = questions[currentQuestion].answers[0];
-  btn2.textContent = questions[currentQuestion].answers[1];
-  btn3.textContent = questions[currentQuestion].answers[2];
-  btn4.textContent = questions[currentQuestion].answers[3];
+  btn1.textContent = questions[currentQuestionIndex].answers[0];
+  btn2.textContent = questions[currentQuestionIndex].answers[1];
+  btn3.textContent = questions[currentQuestionIndex].answers[2];
+  btn4.textContent = questions[currentQuestionIndex].answers[3];
 };
 let highscores = [];
 for (var i = 0; i < answersBtn.length; i++) {
   answersBtn[i].addEventListener("click", function userAnswer(event) {
     event.stopPropagation();
     if (
-      event.currentTarget.innerText === questions[currentQuestion].correctAnswer
+      event.currentTarget.innerText === questions[currentQuestionIndex].correctAnswer
     ) {
-      currentQuestion++;
+      currentQuestionIndex++;
       winGame();
       // correctAnswer.textContent = "Correct + 5 sec";
       // correctAnswer.setAttribute("style", "color: yellow");
@@ -191,16 +189,16 @@ for (var i = 0; i < answersBtn.length; i++) {
       // secondsLeft = secondsLeft - 5;
       console.log("Incorrect minus 5 seconds");
     }
-    console.log(currentQuestion + "current question ");
+    console.log(currentQuestionIndex + "current question ");
 
-    if (currentQuestion < 2) {
+    if (currentQuestionIndex < 2) {
 
       renderQuestions();
     }else {
      setHighScore();
       gameOver();
       clearInterval(timer)
-      currentQuestion = 0
+      currentQuestionIndex = 0
       renderQuestions();
     }
   });
@@ -228,6 +226,6 @@ submitButton.addEventListener("click", function(event){
 
 });
 
-console.log(questions[currentQuestion].correctAnswer);
+console.log(questions[currentQuestionIndex].correctAnswer);
 
 init();

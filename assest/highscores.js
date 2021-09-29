@@ -10,15 +10,17 @@ var initialsBtn = document.getElementById('#buttonInitials');
 console.log(highscores);
 console.log(initials);
 function showHighScore(){
-  storedHighscores.sort( function( a, b ) {
-    var answerA = a.answerScore;
-    var timeA = a.timeScore;
-    var answerB = b.answerScore;
-    var timeB = b.timeScore;
-  
-    return ( answerA < answerB ? 1 : ( answerA > answerB ? -1 : ( answerA === answerB ? ( timeA < timeB ? 1 : ( timeA > timeB ? -1 : 0 ) ) : null ) ) );
-  } );
-
+          
      
+  for( var i = 0; i < highscores.length; i++ ) {
+    var li = document.createElement( 'li' );
+    li.textContent = `${i+1}. ${highscores[i].initals} --- ${highscores[i].answerScore} Correct --- ${highscores[i].timeScore} Seconds remaining`;
+    highscoresListEl.append( li );
+  }
   
+  // Event Listener clear scores
+  // clearScoresBtn.addEventListener( 'click', function() {
+  //   localStorage.clear();
+  //   location.reload();
+  // } );
 }
