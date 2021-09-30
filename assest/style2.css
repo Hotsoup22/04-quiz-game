@@ -1,3 +1,6 @@
 #gameOver{
     display:none;
 }
+.hidden{
+    display: none;
+}

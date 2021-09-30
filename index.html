@@ -11,74 +11,63 @@
 </head>
 
 <body>
-<header>
-  <!-- Nav bar with a link on the left and the timer on the right-->
-  <nav>
-    <a href="index.html">home</a>
-    <a href="assest/highScoreIndex.html">View highscore</a>
-  </nav>
-</header>
+  <header>
+    <!-- Nav bar with a link on the left and the timer on the right-->
+    <nav>
+      <a href="index.html">home</a>
+      <a href="assest/highScoreIndex.html">View highscore</a>
+    </nav>
+  </header>
 
 
 
   <!--quiz-->
-  <div class="card results">
-    <div class = "win-loss-container">
-    <div>
+  <div class="card results hidden">
     <h2>Correct: <span class="win">0 </span> </h2>
-    <h2>Incorrect: <span class="lose">0</span></h2>
-  </div>
-  <div id="quizContainer">
-     <!-- STATS-->
-     <div class ="stats hidden"> 
-      <!--Score-->
-      <div id= "score" class="hidden">Score</div>
-      <!-- TimerContainer-->
-      <div class= "card timer">
-        <div class = "timer-text">
-        <div class="large-font timer-count">10</div>
-        <h3>seconds remaining</h3>
-      </div>
+    <!--Score-->
+    <div id= "score" >Time Left:</div>
+    <!-- TimerContainer-->
+    <div class="large-font timer-count">20</div>    
+ </div>
 
-    <!-- game menu-->
-    <div class="startMenu">
-      
+  <!-- game menu-->
+  <div class="startMenu">   
       <h2 id='startTitle'> QUIZ TIME! You Ready?</h2>
         <button class="start-button">Start</button>
-        <input type="text" class="form-control mb-2" id="initials" placeholder="Enter your initials">
-        <a class="btn btn-dark btn-lg initials" href="assest/highScoreIndex.html" role="button" id="buttonInitials">Submit</a>
-    </div>
+  </div>
 
      
-   <!-- QuestionContainer-->
-<div id="questionsContainer">
-  <h3 id="questionsTitle"> Questions:</h3>
+  <!-- QuestionContainer-->
+  <div id="questionsContainer">
+    <h3 id="questionsTitle"> Questions:</h3>
+  </div>
 
-</div>
   <!--answers Container-->
-  <div id="answersContainer">
+ <div id="answersContainer">
     <ul id="answers">Select From Multiple Choice Answers.
      <li> <button type="button" class='answersBtn' id="btn1">Click Me!</button> </li>
      <li> <button type="button" class='answersBtn' id="btn2">Click Me!</button> </li>
      <li> <button type="button" class='answersBtn' id="btn3">Click Me!</button> </li>
      <li> <button type="button" class='answersBtn' id="btn4">Click Me!</button> </li>
     </ul>
-  </div>
+ </div>
 
    
 
     <!--submit-->
-    <div class="hidden">
+  <div class="hidden">
       <button id="Submit"> Submit</button>
-      <button class="reset-button">Reset Score</button>
-    </div>
+      <!-- <button class="reset-button">Reset Score</button> -->
   </div>
+ 
 
 
 
-<div id='gameOver'>
-  <h3>gameOver</h3>
-</div>
+  <div id='gameOver'>
+    <h3>gameOver</h3>
+    <input type="text" class="form-control mb-2" id="initials" placeholder="Enter your initials">
+    <a class="btn btn-dark btn-lg initials" href="assest/highScoreIndex.html" role="button" id="buttonInitials">Submit</a>
+  </div>
 
 
  
