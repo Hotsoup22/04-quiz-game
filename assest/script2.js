@@ -4,6 +4,9 @@ var win = document.querySelector(".correctA");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+
+
+
 // var questionsTitle = $('.questionsTitle');
 var questionsTitle = document.getElementById("questionsTitle");
 var startTitle = document.getElementById("#startTitle");
@@ -15,9 +18,9 @@ var answersBtn = document.querySelectorAll(".answersBtn");
 var answersContainerDiv = $("#answersContainer");
 let currentQuestionIndex = 0;
 let winCounter ;
-
+let timerCount;
 startButton.addEventListener("click", startGame);
-
+//
 // The startGame function is called when the start button is clicked
 function startGame() {
   $(".hidden").css({ display: "block" });
@@ -52,11 +55,6 @@ function startTimer() {
   }, 1000);
 }
 
-// The winGame function is called when the win condition is met
-function winGame() {
-  startButton.disabled = false;
-  getWins();
-}
 
 function hideIncorrect(){
   $(".incorrect").css({ display: "none" })
@@ -64,7 +62,7 @@ function hideIncorrect(){
 
 // The loseGame function is called when timer reaches 0
 function incorrectAnswer() {
-  document.getElementById("startTitle").innerHTML = "INCORRECT";
+  // document.getElementById("startTitle").innerHTML = "INCORRECT";
   timerCount -= 5;
   $(".incorrect").css({ display: "block" })
   setInterval(hideIncorrect, 2000)
@@ -79,47 +77,33 @@ function correctAnswer() {
 }
 
 function gameOver() {
-  clearInterval( timerInterval );
-	if( timerCount < 0 ) {
-		timerCount = 0;
-	}
-  updateTimerValue();
-  document.getElementById("startTitle").innerHTML = "GAME OVER";
+
+	// if( timerCount < 0 ) {
+	// 	timerCount = 0;
+
+  document.getElementById("startTitle").innerHTML = `GAME OVER, refresh page to restart game!
+  score: ${winCounter} time:${timerCount}`;
+  $("#gameOver").css({display: 'block'})
+
   $("#inlineFormInput").css({ display: "block" });
   $(".initials").css({ display: "block" });
-  //  startTitle.innerHTML = "GAME OVER";
-  // startTitle.textContent = ("GAME OVER");
+  $("#startTitle").css({ display: "block" });
+ 
+  $("#startTitle").textContent = ("GAME OVER");
   startButton.disabled = false;
+  btn1.disabled = true;
+  btn2.disabled = true;
+  btn3.disabled = true;
+  btn4.disabled = true;
   win.textContent=winCounter;
+  updateTimerValue();
+    
+  clearInterval( timerInterval );
+  
+  console.log("here")
   // setLosses();
+  //}
 }
-
-
-
-
-
-// These functions are used by init
-function getWins() {
-  // Get stored value from client storage, if it exists
-  var storedWins = localStorage.getItem("winCount");
-  // If stored value doesn't exist, set counter to 0
-  if (storedWins === null) {
-   
-  } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    winCounter = storedWins;
-  }
-}
-
-// function getlosses() {
-//   var storedLosses = localStorage.getItem("loseCount");
-//   if (storedLosses === null) {
-//     loseCounter = 0;
-//   } else {
-//     loseCounter = storedLosses;
-//   }
-//   lose.textContent = loseCounter;
-// }
 
 var questions = [
   {
@@ -145,7 +129,7 @@ function renderQuestions() {
   btn3.textContent = questions[currentQuestionIndex].answers[2];
   btn4.textContent = questions[currentQuestionIndex].answers[3];
 }
-let highscores = [];
+
 for (var i = 0; i < answersBtn.length; i++) {
   answersBtn[i].addEventListener("click", function userAnswer(event) {
     event.stopPropagation();
@@ -175,35 +159,53 @@ for (var i = 0; i < answersBtn.length; i++) {
 }
 
 
-// function setHighScore(finalWinScore, finalLoseScore, timerleft) {
-//   console.log("lopp");
-//   finalWinScore = win.textContent;
-//   finalLoseScore = lose.textContent;
-//   timerleft = timerCount;
-//   console.log(
-//     finalWinScore + ":correct",
-//     finalLoseScore + ":inncorrect",
-//     timerleft + " :seconds left"
-//   );
-//   //  highscores = (finalWinScore, finalLoseScore, timerleft);
-//   localStorage.setItem(
-//     "highscores",
-//     JSON.stringify(finalWinScore, finalLoseScore, timerleft)
-//   );
-//   return finalWinScore, finalLoseScore, timerleft;
-// }
-// highscores.push(finalWinScore, finalLoseScore, timerleft);
-//var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-submitButton = document.getElementById("buttonInitials");
-submitButton.addEventListener("click", function (event) {
-  event.stopPropagation();
-  console.log("click");
+// var initials = document.querySelector("#initials").value;
+// function setHighScore( winCounter, timerCount,initials ) {
+//  winCounter,
+//  timerCount
+//  initials
+//   // var Highscores = {
+// 	// 	name: initials,
+// 	// 	answerScore: winCounter,
+// 	// 	timeScore: timerCount
+// 	// };
+//   console.log('setHighScore',  winCounter,timerCount,initials)
+//   // var storedHighscores = JSON.parse( localStorage.getItem( 'storedHighscores' ) ) || [];
 
-  // Send to localStorage
+// 	// storedHighscores.push( storedHighscores );
 
-  setHighScore();
-});
+// 	// localStorage.setItem( 'storedHighscores', JSON.stringify( storedHighscores ) );
 
-console.log(questions[currentQuestionIndex].correctAnswer);
+// 	// window.location = './Assets/html/highscores.html';
+
+
+//   // console.log("sethigh score")
+  
+// // };
+// var submitInitialsButton = document.querySelector("#submitInitialsButton");
+// var submitInitialsform = document.querySelector("#initialsForm");
+
+document.getElementById("initialsForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  // create user object from submission
+  var highscores = {
+   userInitials: initials.value.trim(),
+    wins: winCounter,
+    timeLeft: timerCount+"seconds"
+  };
+localStorage.setItem("highscores", JSON.stringify(highscores));
+  console.log(highscores)
+  
+  setInterval(setHighScoreLabel, 2000)
+  // // set new submission to local storage 
+  
+  // console.log(highscores)
+})
+ function setHighScoreLabel(){
+  $(".visitHighscore").css({ display: "block" })
+ }
+
+
 
 
