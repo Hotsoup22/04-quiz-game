@@ -1,26 +1,37 @@
-console.log('we are in');
-var storedLosses = localStorage.getItem("loseCount");
-var storedWins = localStorage.getItem("winCount");
-var winLossContainer = document.querySelector('.win-loss-container');
+
+
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-var initials = document.getElementById('#initials');
-var initialsBtn = document.getElementById('#buttonInitials');
-// var finalWinScore = (winCounter)
-// var finalLoseScore = (loseCounter)
-console.log(highscores);
-console.log(initials);
-function showHighScore(){
-          
-     
-  for( var i = 0; i < highscores.length; i++ ) {
+var highscoresList = document.querySelector( '#highscoresList' );
+var clear = document.querySelector(".clear")
+ function showHighScore(){
+   for (let i=1; i <= 1; i++){
+    console.log(highscores, i);
     var li = document.createElement( 'li' );
-    li.textContent = `${i+1}. ${highscores[i].initals} --- ${highscores[i].answerScore} Correct --- ${highscores[i].timeScore} Seconds remaining`;
-    highscoresListEl.append( li );
-  }
+       li.textContent = `user Initials: ${highscores.userInitials}
+       correct answers: ${highscores.wins} Time left:${highscores.timeLeft}`;
+      highscoresList.append( li );
+   }
+   }
   
+
+  clear.addEventListener("click", function() {
+    localStorage.clear();
+   })
+//   console.log(highscores);
+
+//   //   var li = document.createElement( 'li' );
+//   // li.textContent = highscores.userInitials
+//   //   highscoresList.append( li );
+  
+    // for( var i = 0; i < highscores.length; i++ ) {
+    //   var li = document.createElement( 'li' );
+    //   li.textContent = `${highscores.userInitials} --- ${highscores[i].wins} Correct --- ${storedhighscores[i].timeLeft} Seconds remaining`;
+    //   highscoresListEl.append( li );
+    // }
   // Event Listener clear scores
   // clearScoresBtn.addEventListener( 'click', function() {
-  //   localStorage.clear();
+
   //   location.reload();
   // } );
-}
+ 
+ showHighScore();
