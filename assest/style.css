@@ -1,7 +1,167 @@
-.hidden {
-    display: none;
-   
+/* initials form */
+#gameOver {
+  margin-top: 25px;
+  text-align: center;
+  display: none;
+  background-color: seagreen;
+  color: white;
+  width: 48%;
+  padding: 16px;
 }
-.hidden2 {
-    display: none;
+#submitInitialsButton {
+  background-color: rgb(255, 255, 255);
+}
+.hidden {
+  display: none;
+}
+.incorrect {
+  display: none;
+  text-align: center;
+}
+.visitHighscore {
+  display: none;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  width: 100%;
+  text-align: right;
+  /* background-color: rgb(253, 225, 103); */
+  padding: 5px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+#answersContainer {
+  margin-top: 5%;
+  width: 50%;
+}
+#answersUl {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.answersBtn {
+  word-break: break-all;
+  padding: 15px;
+  width: 100%;
+  font-size: 16px;
+}
+.start-button {
+  margin-top: 1%;
+
+  width: 100%;
+  background-color: seagreen;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.startMenu {
+  margin-top: 1%;
+  text-align: center;
+  width: 50.5%;
+}
+.incorrect {
+  color: red;
+}
+.nav-button {
+  position: relative;
+  background-color: #4caf50;
+  border: none;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 12px;
+  width: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.highscoreBtn {
+  margin-top: 10px;
+  justify-content: space-between;
+  background-color: #4caf50;
+  border: none;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.highscoreBtnDiv {
+  margin-top: 2%;
+}
+
+/* score and time remaining */
+.results {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.correctA {
+  color: purple;
+}
+.timer-count {
+  color: rgb(187, 0, 0);
+}
+.results p {
+  position: relative;
+  background-color: seagreen;
+  border: none;
+
+  color: #ffffff;
+  padding: 10px;
+  width: 200px;
+  height: fit-content;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: larger;
+}
+
+.highscoreLiDiv {
+  margin: 3vh 10vh 10vh 10vh;
+  background-color: lavender;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  padding: 5px;
+  width: 450px;
+}
+li.highscoreLi {
+  font-family: monospace;
+  font-size: larger;
+  list-style-type: none;
+  margin-right: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+/* clear history btn */
+.clear {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.game_description {
+  color: red;
 }
