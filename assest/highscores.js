@@ -1,37 +1,17 @@
-
-
-var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-var highscoresList = document.querySelector( '#highscoresList' );
+var highscoresUl = document.querySelector('.highscoresList');
 var clear = document.querySelector(".clear")
- function showHighScore(){
-   for (let i=1; i <= 1; i++){
-    console.log(highscores, i);
-    var li = document.createElement( 'li' );
-       li.textContent = `user Initials: ${highscores.userInitials}
-       correct answers: ${highscores.wins} Time left:${highscores.timeLeft}`;
-      highscoresList.append( li );
-   }
-   }
-  
 
-  clear.addEventListener("click", function() {
-    localStorage.clear();
-   })
-//   console.log(highscores);
+let highscores = JSON.parse(localStorage.getItem('highscores')) || []
 
-//   //   var li = document.createElement( 'li' );
-//   // li.textContent = highscores.userInitials
-//   //   highscoresList.append( li );
-  
-    // for( var i = 0; i < highscores.length; i++ ) {
-    //   var li = document.createElement( 'li' );
-    //   li.textContent = `${highscores.userInitials} --- ${highscores[i].wins} Correct --- ${storedhighscores[i].timeLeft} Seconds remaining`;
-    //   highscoresListEl.append( li );
-    // }
-  // Event Listener clear scores
-  // clearScoresBtn.addEventListener( 'click', function() {
+console.log("GET LOCAL STORAGE line 161", highscores)
 
-  //   location.reload();
-  // } );
- 
- showHighScore();
+function showHighScore() {
+  highscoresUl.innerHTML = highscores.map((highscores) => {
+    return `<div class="highscoreLiDiv"> <li class="highscoreLi"> Name: ${highscores.userInitials}</li> <li class="highscoreLi"> Score: ${highscores.score} </li>  <li class="highscoreLi"> Time Remaining: ${highscores.timeLeft} </li> </div>`
+  }).join(' ')
+}
+
+clear.addEventListener("click", function () {
+  localStorage.clear();
+})
+showHighScore();
