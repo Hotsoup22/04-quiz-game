@@ -4,93 +4,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assest/style2.css" />
-  <tittle>
-    <h1>QUIZ TIME!</h1>
-  </tittle>
+  <link rel="stylesheet" href="assest/style.css" />
+  <title>Quiz Time!</title>
 </head>
 
 <body>
-  <header>
+  <header class="header">
     <!-- Nav bar with a link on the left and the timer on the right-->
-    <nav>
-      <a href="index.html">home</a>
-      <a href="assest/highScoreIndex.html">View highscore</a>
+    <nav class="nav">
+      <a role="button" class="nav-button" href="index.html">Home</a>
+      <a role="button" class="nav-button" href="assest/highScoreIndex.html">View Highscore</a>
     </nav>
   </header>
 
 
-
-  <!--quiz-->
-  <div class="card results hidden">
-    <h2>Correct: <span class="correctA">0 </span> </h2>
-    <h3 class= 'incorrect '>Incorrect</h3>
+  <section class="card results hidden">
     <!--Score-->
-    <div id= "score" >Time Left:</div>
+    <p>Score: <span class="correctA">0</span></p>
     <!-- TimerContainer-->
-    <div class="large-font timer-count">20</div>    
- </div>
+    <p> Time Remaining: <span class=" timer-count">60</span> </p>
+  </section>
+
 
   <!-- game menu-->
-  <div class="startMenu ">   
-      <h2 id='startTitle' > QUIZ TIME! You Ready? Push start to begin!</h2>
-        <button class="start-button">Start</button>
-  </div>
+  <section class="startMenu">
+    <h2 id="startTitle">JavaScript Quiz!</h2>
+    <button class="start-button">Start</button>
+  </section>
 
-     
   <!-- QuestionContainer-->
-  <div id="questionsContainer">
-    <h3 id="questionsTitle"> Questions:</h3>
-  </div>
+  <section id="questionsContainer">
+    <h3 id="questionsTitle"></h3>
+  </section>
 
   <!--answers Container-->
- <div id="answersContainer">
-    <ul id="answers">Select From Multiple Choice Answers.
-     <li> <button type="button" class='answersBtn' id="btn1">Click Me!</button> </li>
-     <li> <button type="button" class='answersBtn' id="btn2">Click Me!</button> </li>
-     <li> <button type="button" class='answersBtn' id="btn3">Click Me!</button> </li>
-     <li> <button type="button" class='answersBtn' id="btn4">Click Me!</button> </li>
+  <section id="answersContainer">
+    <ul id="answersUl" class="answersUl">
+      <li>
+        <button type="button" class="answersBtn" id="btn1" disabled>
+          Click Start
+        </button>
+      </li>
+      <li>
+        <button type="button" class="answersBtn" id="btn2" disabled>
+          Click Start
+        </button>
+      </li>
+      <li>
+        <button type="button" class="answersBtn" id="btn3" disabled>
+          Click Start
+        </button>
+      </li>
+      <li>
+        <button type="button" class="answersBtn" id="btn4" disabled>
+          Click Start
+        </button>
+      </li>
     </ul>
- </div>
+    <p class="incorrect">-5 Seconds</p>
+  </section>
+  <section class="game_description">
+    <p>-5 Seconds, when incorrect</p>
 
-   
+  </section>
 
-  <!-- submit
-  <div class="hidden">
-      <button id="Submit"> Submit</button>
-      <button class="reset-button">Reset Score</button> 
-  </div> --> 
- 
-
-
-
-  <div id='gameOver'>
+  <section id="gameOver">
     <form id="initialsForm">
-      <label >Enter initials:</label>
-      <input type="text" id="initials">
-      <input type="submit" id="submitInitialsButton" value="Submit">
-  </form>
-  <h3 class="visitHighscore">visit highscore link!</h3>
-  </div>
+      <label>Enter Initials:</label>
+      <input type="text" id="initials" />
+      <input type="submit" id="submitInitialsButton" value="Submit" />
+      <div class="highscoreBtnDiv">
+        <a role="button" class="highscoreBtn hidden" href="assest/highScoreIndex.html">View Highscore</a>
+      </div>
+    </form>
 
+  </section>
 
- 
-
-  <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
-  <script type="text/javascript" src="assest/script2.js"> </script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="assest/script2.js"></script>
 </body>
 
 </html>
-<!-- GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-``` -->
