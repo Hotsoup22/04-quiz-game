@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <tittle>QUIZ</tittle>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>Quiz Highscores</title>
+</head>
 
-    <!-- Nav bar with a link on the left and the timer on the right-->
-<nav>
-  <a href="/index.html" >home</a>
-  <a href="highScoreIndex.html">View highscore</a>
-</nav>  
+<body>
+  <!-- Nav bar with a link on the left and the timer on the right-->
+  <nav class="nav">
+    <a role="button" class="nav-button" href="/index.html">Home</a>
+    <a role="button" class="nav-button" href="highScoreIndex.html">View highscore</a>
+  </nav>
 
-<div>
-  <h1>Highscores</h1>
-  <ul id="highscoresList">
+  <div>
+    <h1>Top 5 Highscores:</h1>
+    <ul class="highscoresList">
       <!-- Highscores list items will be appended here -->
-  </ul>
-</div>
-<div>
-<button type="button" class="clear">clear highscore</button>
-</div>
-<script type="text/javascript" src="highscores.js"> </script>
+    </ul>
 
-  
+  </div>
+  <div>
+    <button type="button" class="clear">clear highscore</button>
+  </div>
+  <script type="text/javascript" src="highscores.js"> </script>
 </body>
+
 </html>
