@@ -12,17 +12,18 @@
   <header class="header">
     <!-- Nav bar with a link on the left and the timer on the right-->
     <nav class="nav">
-      <a role="button" class="nav-button" href="index.html">Home</a>
+      <a role="button" class="nav-button hidden restart-button" href="index.html">Restart</a>
       <a role="button" class="nav-button" href="assest/highScoreIndex.html">View Highscore</a>
     </nav>
   </header>
-
 
   <section class="card results hidden">
     <!--Score-->
     <p>Score: <span class="correctA">0</span></p>
     <!-- TimerContainer-->
-    <p> Time Remaining: <span class=" timer-count">60</span> </p>
+    <p> Time Remaining: <span class=" timer-count">200</span> </p>
+    <!-- Question counter -->
+    <p> Question's Remaining: <span class="question-counter"></span> </p>
   </section>
 
 
@@ -39,35 +40,16 @@
 
   <!--answers Container-->
   <section id="answersContainer">
-    <ul id="answersUl" class="answersUl">
-      <li>
-        <button type="button" class="answersBtn" id="btn1" disabled>
-          Click Start
-        </button>
-      </li>
-      <li>
-        <button type="button" class="answersBtn" id="btn2" disabled>
-          Click Start
-        </button>
-      </li>
-      <li>
-        <button type="button" class="answersBtn" id="btn3" disabled>
-          Click Start
-        </button>
-      </li>
-      <li>
-        <button type="button" class="answersBtn" id="btn4" disabled>
-          Click Start
-        </button>
-      </li>
-    </ul>
+    <ul id="answersUl" class="answersUl"></ul>
     <p class="incorrect">-5 Seconds</p>
   </section>
+
   <section class="game_description">
+    <!-- game_description  -->
     <p>-5 Seconds, when incorrect</p>
-
   </section>
-
+  
+  <!-- game over -->
   <section id="gameOver">
     <form id="initialsForm">
       <label>Enter Initials:</label>
@@ -77,7 +59,6 @@
         <a role="button" class="highscoreBtn hidden" href="assest/highScoreIndex.html">View Highscore</a>
       </div>
     </form>
-
   </section>
 
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
