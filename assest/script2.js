@@ -1,45 +1,31 @@
 var win = document.querySelector(".correctA");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
+var questionCounterElement = document.querySelector(".question-counter");
 var startButton = document.querySelector(".start-button");
 var results = document.querySelector(".results")
-var answersBtn = document.querySelectorAll(".answersBtn");
-
-// var questionsTitle = $('.questionsTitle');
 var questionsTitle = document.getElementById("questionsTitle");
 var startTitle = document.getElementById("#startTitle");
-var btn1 = document.getElementById("btn1");
-var btn2 = document.getElementById("btn2");
-var btn3 = document.getElementById("btn3");
-var btn4 = document.getElementById("btn4");
-
+var answersUl = document.getElementById("answersUl");
 var answersContainerDiv = $("#answersContainer");
+let highscores = JSON.parse(localStorage.getItem('highscores')) || []
+let questionTracker = [];
 let currentQuestionIndex = 0;
 let winCounter;
 let timerCount;
-let highscores = JSON.parse(localStorage.getItem('highscores')) || []
-const btnbyId = [btn1, btn2, btn3, btn4]
-btn1.disabled = true;
-btn2.disabled = true;
-btn3.disabled = true;
-btn4.disabled = true;
+
 startButton.addEventListener("click", startGame);
 // The startGame function is called when the start button is clicked
 function startGame() {
-  $("#buttonInitials").css({ display: "none" });
-  $("#startTitle").css({ display: "none" });
-  $(".game_description").css({ display: "none" });
+  $("#buttonInitials, #startTitle, .game_description").css({ display: "none" });
   results.classList.remove("hidden");
-  //enable buttons
-  btn1.disabled = false;
-  btn2.disabled = false;
-  btn3.disabled = false;
-  btn4.disabled = false;
+  document.querySelector(".restart-button").classList.remove("hidden");
   isWin = false;
-  timerCount = 60;
+  timerCount = 200;
   startButton.disabled = true;
   startButton.classList.add("hidden")
   winCounter = 0;
+  questions = shuffleArray(questions)
   renderQuestions();
   startTimer();
 }
@@ -56,8 +42,11 @@ function startTimer() {
   timerInterval = setInterval(function () {
     timerCount -= 1;
     updateTimerValue();
-    if (timerCount <= 0 || currentQuestionIndex === questions.length) {
+    if (timerCount <= 0) {
       gameOver();
+    }
+    if (currentQuestionIndex === questions.length) {
+      congratulations();
     }
   }, 1000);
 }
@@ -68,68 +57,66 @@ function hideIncorrect() {
 
 // The loseGame function is called when timer reaches 0
 function incorrectAnswer() {
-  // document.getElementById("startTitle").innerHTML = "INCORRECT";
   timerCount -= 5;
   $(".incorrect").css({ display: "block" })
   setInterval(hideIncorrect, 1000)
 }
 
 function correctAnswer() {
-  // document.getElementById("startTitle").innerHTML = "CORRECT!!!🏆 ";
+  questionTracker.push(questionsTitle.textContent)
   winCounter++;
   win.textContent = winCounter;
 }
 
 function gameOver() {
-  document.getElementById("startTitle").innerHTML = `GAME OVER!`;
+  document.getElementById("startTitle").textContent = `GAME OVER!`;
   document.getElementById("questionsTitle").classList.add("hidden");
-  $("#gameOver").css({ display: 'block' })
-  $("#inlineFormInput").css({ display: "block" });
-  $(".initials").css({ display: "block" });
-  $("#startTitle").css({ display: "block" });
-  $("#startTitle").textContent = ("GAME OVER");
+  $("#gameOver, #inlineFormInput, .initials, #startTitle").css({ display: 'block' })
   startButton.disabled = false;
-  // disable buttons for game over screen
-  btn1.disabled = true;
-  btn2.disabled = true;
-  btn3.disabled = true;
-  btn4.disabled = true;
+  win.textContent = winCounter;
+  updateTimerValue();
+  clearInterval(timerInterval);
+}
+
+function congratulations() {
+  document.getElementById("startTitle").textContent = `Congratulations!`;
+  document.getElementById("questionsTitle").classList.add("hidden");
+  $("#gameOver, #inlineFormInput, .initials, #startTitle").css({ display: 'block' })
+  startButton.disabled = false;
   win.textContent = winCounter;
   updateTimerValue();
   clearInterval(timerInterval);
 }
 
 function renderQuestions() {
+  questionCounterElement.textContent = `${currentQuestionIndex}/25 `
+  answersUl.textContent  = '';
   questionsTitle.textContent = questions[currentQuestionIndex].question;
-  btn1.textContent = questions[currentQuestionIndex].answers[0];
-  btn2.textContent = questions[currentQuestionIndex].answers[1];
-  btn3.textContent = questions[currentQuestionIndex].answers[2];
-  btn4.textContent = questions[currentQuestionIndex].answers[3];
+  questions[currentQuestionIndex].answers = shuffleArray(questions[currentQuestionIndex].answers);
+
+  for (var i = 0; i < questions[currentQuestionIndex].answers.length; i++) {
+    var button = document.createElement('button');
+    button.setAttribute('data-answer', questions[currentQuestionIndex].answers[i]);
+    button.setAttribute('class', "answerButton");
+    button.textContent = questions[currentQuestionIndex].answers[i];
+    answersUl.append(button);
+
+    button.addEventListener("click", function userAnswer(event) {
+      event.stopPropagation();
+      if (event.currentTarget.innerText === questions[currentQuestionIndex].correctAnswer) {
+        correctAnswer();
+        currentQuestionIndex++
+        renderQuestions()
+      } else if (event.currentTarget.innerText !== questions[currentQuestionIndex].correctAnswer) {
+        incorrectAnswer();
+      } else {
+        gameOver();
+      }
+    });
+  }
 }
 
-for (var i = 0; i < answersBtn.length; i++) {
-  answersBtn[i].addEventListener("click", function userAnswer(event) {
-    event.stopPropagation();
-    if (
-      event.currentTarget.innerText ===
-      questions[currentQuestionIndex].correctAnswer
-    ) {
-      correctAnswer();
-      currentQuestionIndex++;
-    } else {
-      incorrectAnswer();
-    }
-    if (currentQuestionIndex < 24) {
-      renderQuestions();
-    } else {
-      gameOver();
-      currentQuestionIndex = 0;
-      renderQuestions();
-    }
-  });
-}
-
-//event listener
+//event listener for HIGHSCORE form data
 document.getElementById("initialsForm").addEventListener("submit", function (event) {
   event.preventDefault();
   const highscoreBtn = document.querySelector('.highscoreBtn')
@@ -139,10 +126,6 @@ document.getElementById("initialsForm").addEventListener("submit", function (eve
     score: winCounter,
     timeLeft: timerCount
   };
-  let worstScore = 0;
-  if (score.score > 4) {
-    worstScore = hiscores[hiscores.length - 1].score;
-  }
   highscores.push(score)
   highscores.sort((a, b) => a.score > b.score ? -1 : 1);
   if (highscores.length > 5) {
@@ -153,6 +136,21 @@ document.getElementById("initialsForm").addEventListener("submit", function (eve
   localStorage.setItem("highscores", JSON.stringify(highscores));
   console.log("not even elses", highscores)
 })
+
+// Fisher-Yates shuffle: used to shuffle the question order and answer order
+function shuffleArray(array) {
+  // Start from the last element and swap
+  // one by one. We don't need to run for
+  // the first element that's why i > 0
+  for (var i = array.length - 1; i > 0; i--) {
+    // Pick a random index from 0 to i inclusive
+    var j = Math.floor(Math.random() * (i + 1));
+    // Swap arr[i] with the element
+    // at random index
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 // quiz game questions
 var questions = [
@@ -240,13 +238,13 @@ var questions = [
     answers: [
       ` <!--This comment has <br> more than one line-->`, ` //This is a comment <br> more than one line//`, ` /*This comment has <br> more than one line*/`],
     //correct answers
-    correctAnswer: '//This is a comment',
+    correctAnswer: '//This is a comment <br> more than one line//',
   },
   {
     question: 'What is the correct way to write a JavaScript array?',
     answers: [' var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', ' var colors = "red", "green", "blue"', ' var colors = (1:"red", 2:"green", 3:"blue")', ' var colors = ["red", "green", "blue"]'],
     //correct answers
-    correctAnswer: '//This is a comment',
+    correctAnswer: 'var colors = ["red", "green", "blue"]',
   },
   {
     question: 'How do you round the number 7.25, to the nearest integer?',
@@ -304,8 +302,8 @@ var questions = [
   },
   {
     question: "Is JavaScript case-sensitive?",
-    answers: [' No', ' Yes'],
+    answers: [' No', 'Yes'],
     //correct answers
     correctAnswer: 'Yes',
-  },
+  }
 ];
