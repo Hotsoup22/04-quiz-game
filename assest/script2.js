@@ -42,7 +42,8 @@ function startTimer() {
   timerInterval = setInterval(function () {
     timerCount -= 1;
     updateTimerValue();
-    if (timerCount <= 0) {
+    if (timerCount <= 0 ) {
+      timerCount = 0
       gameOver();
     }
     if (currentQuestionIndex === questions.length) {
